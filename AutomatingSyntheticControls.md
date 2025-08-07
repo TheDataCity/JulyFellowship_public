@@ -186,10 +186,7 @@ The quadratic programme reads as follows
 
 $$\min\mathbf{(y^N-Xw).T V(y^N-Xw)}+\lambda \bf (y^N J_{1,N}-X).T (y^NJ_{1,N}-X) w \cdot J_{1,N}.T $$
 
-where $J_{1,N}$ is a vector of ones of shape $1\times N$, alternatively with summation notation:
-
-$$\min || y^N-\sum^{N-1}_{j=0} w_jX_j||^2+\lambda\sum_{j=0}^{N-1}w_j(y^N-X_j).T (y^N-X_j). $$
-
+where $J_{1,N}$ is a vector of ones of shape $1\times N$.
 The parameter $\lambda$ controls the balance within the solution of interpolation and extrapolation biases.
 $\lambda\to 0$ recovers classic synthetic control, $\lambda\to \infty$ is a nearest neighbour match. For each value of $\lambda$ there ought to be a unique solution (see Abadie, convex hulls and Delaunay geometry, I believe it but I can't prove it).
 
@@ -201,6 +198,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 ### Using SVD/POD/PCA for disaggregate data.
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
