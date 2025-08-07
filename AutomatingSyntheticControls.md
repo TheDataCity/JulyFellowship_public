@@ -15,6 +15,7 @@ $$ \mathbf{y^n}= \left(\begin{array}{c} y^n_0 \\ y^n_1 \\ .\\ . \\ y^n_T \end{ar
 The vector exists for $n=0,1,...N$ (N+1) region (units) with components $y^n_t$ for each of the companies at each time. We'll assign company $N$ as the unit to be modelled, and thus $n=0,1,2,...N-1$ are the ($N$) donor units. The synthetic control method proposes that we can create a sum
 
 $$ \mathbf{y^N}=\sum_{n=0}^{N-1} w_n y_n + \varepsilon$$
+
 which describes the effected unit in terms of the donor units and some error $\varepsilon$ which is a $T\times 1$ vector with components $\varepsilon_t$.
 
 Assembling the donor units into a matrix of shape $T_0 \times N$, which we call $\bf{X}$, allows us to simplify this sum.
@@ -178,4 +179,5 @@ This is effectively a generalisation of the penalised method but using two diffe
 ### Using SVD/POD/PCA for disaggregate data.
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
