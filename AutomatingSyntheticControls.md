@@ -30,9 +30,9 @@ And now the model reads
 $$ y^N=\bf{X}\bf{w} + \varepsilon$$
 
 where $\bf w$ is an $N \times 1$ vector with components $w_n$, the weightings of each donor unit. 
-
+``` math
 $$\mathbf{w}= \left(\begin{array}{c} w_0 \\ w_1 \\ . \\ . \\ w_{N-1} \end{array}\right)$$
-
+```
 The weights sum to one and be non-negative in order to be a weighted average of the donor units. 
 
 $$\sum_{n=0}^{N-1}w_n=1, \quad \rm{and} \quad w_n\geq 0 \quad \forall \; n.$$
@@ -217,3 +217,4 @@ This is effectively a generalisation of the penalised method but using two diffe
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
