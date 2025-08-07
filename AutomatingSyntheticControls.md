@@ -126,7 +126,7 @@ We began in this section by creating a synthetic counterpart for each region of 
 
 This shows that using our selected collection of donors (the other regions of the UK) we can create synthetic controls of all other regions. Of these the synthetic control for North West England most closely matches its measured performance and the synthetic control for South West England least well matches its measured performance. If we had a usefully larger donor set, we would expect these RMSPE measures to be smaller for all regions.
 
-The fitted RMSPE help us to assess the suitability of this control set for modelling Scotland. If we are able to build each region out of the other regions with an appropriately small RMSPE, this suggests that the control set are similar enough to model each others behaviour with no interventions. RMSPE(scotland)$=0.019$ and all of the RMSPE reported are $<0.189$ (using a threshold of 10 RMSP(scotland)) suggests that they are sufficiently similar to make a good control group. The threshold of 10 RMSPE(scotland) is chosen arbitrarily and this is somewhat of a challenge for automation - where should the threshold be? A threshold of 5 would remove the South West from the analysis for example.
+The fitted RMSPE help us to assess the suitability of this control set for modelling Scotland. If we are able to build each region out of the other regions with an appropriately small RMSPE, this suggests that the control set are similar enough to model each others behaviour with no interventions. RMSPE(scotland) $=0.019$ and all of the RMSPE reported are $<0.189$ (using a threshold of 10 RMSP(scotland)) suggests that they are sufficiently similar to make a good control group. The threshold of 10 RMSPE(scotland) is chosen arbitrarily and this is somewhat of a challenge for automation - where should the threshold be? A threshold of 5 would remove the South West from the analysis for example.
 
 ### Quantifying the statistical significance of devolution
 
@@ -218,6 +218,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
