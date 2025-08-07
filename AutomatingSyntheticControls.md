@@ -49,12 +49,12 @@ Solving this problem gives us the closest match to the treated unit in question 
 
 The weights calculated can then be used to forecast the evolution of the synthetic company after the intervention,
 ```math
-$$\mathbf{\tilde{y}^N_{\tau<t<T}} = \mathbf{X_{T_0<t\leq T_1}}\cdot \mathbf{w}.$$
+$$\mathbf{\tilde{y}^{N}_{\tau<t<T}} = \mathbf{X_{T_0<t\leq T_1}}\cdot \mathbf{w}.$$
 ```
 where $X_{T_0<t\leq T_1}$ is the gdp of the donor regions after the intervention in the effected region,
 and we can now write the effect of the treatment as the difference between the observed gdp and the predicted uneffected gdp.
 ```math
-$$\mathrm{effect} =\mathbf{y}^N_{T_{0}<t\leq T_{1}} -\mathbf{\tilde{y}^N_{T_{0}<t\leq T_{1}}} .$$
+$$\mathrm{effect} =\mathbf{y^N_{T_{0}<t\leq T_{1}}} -\mathbf{\tilde{y}^N_{T_{0}<t\leq T_{1}}} .$$
 ```
 ## Challenges of synthetic control methods
 At first glance, the synthetic control method seems well defined but questions arise around a few key steps. How confident can we be that the synthetic control accurately predicts the counterfactual outcome?
@@ -216,6 +216,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
