@@ -97,6 +97,7 @@ We are interested in whether devolution increased or reduced the economic growth
 
 We use ONS data for the growth of gdp of regions of the United Kingdom, found [here](https://www.escoe.ac.uk/research/historical-data/regional-data/), to assess whether devolution has resulted in improved economic performance for Scotland. The data is provided from 1979 Q2 through to 2020. 
 ![image](DevolutionofScotland.png 'Comparison of gdp in scotland and synthetic scotland')
+
 We start with the simplest SCM,
 
 - the weights $w$ must sum to one.
@@ -218,6 +219,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
