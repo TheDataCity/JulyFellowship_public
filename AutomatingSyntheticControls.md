@@ -101,8 +101,8 @@ We use ONS data for the growth of gdp of regions of the United Kingdom, found [h
 We start with the simplest SCM,
 
 - the weights $w$ must sum to one.
-- be non-negative.
-- $V=I_{T\times T}$. (we treat all years equally when minimising $\varepsilon$).
+- the weights $w$ be non-negative.
+- the matrix $V=I_{T\times T}$, the identity matrix (we treat all years equally when minimising $\varepsilon$).
 
 The result is plotted in the figure below, and this synthetic scotland is composed of the North West (59%), South West (15%) and  Northern Ireland (26%). At the first glance, we see that Scotland looks like it has outperformed its synthetic counterpart but can we be sure that this is significant? Now we must attempt to quantify the significance.
 
@@ -219,6 +219,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
