@@ -200,7 +200,7 @@ To generate synthetic companies for analysis we need to think about:
 
 ## Disaggregate data
 In the development of synthetic companies, there are many companies with information that we could use to fit the outcomes of the treated company. In this scenario, there is a risk of interpolation bias where wildly differing companies are averaged to create the synthetic control.
-This is where the penalised synthetic control estimator [Abadie](https://economics.mit.edu/sites/default/files/publications/A%20Penalized%20Synthetic%20Control%20Estimator%20for%20Disagg.pdf) can be used to control the trade off between fitting well the treated unit by using many untreated units and using untreated units that have predictor values close to the treated unit. 
+This is where the penalised synthetic control estimator [Abadie & L'Hour, 2021](https://economics.mit.edu/sites/default/files/publications/A%20Penalized%20Synthetic%20Control%20Estimator%20for%20Disagg.pdf) can be used to control the trade off between fitting well the treated unit by using many untreated units and using untreated units that have predictor values close to the treated unit. 
 
 The quadratic programme reads as follows
 
@@ -219,6 +219,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
