@@ -162,7 +162,7 @@ $$ p_N=\frac{\sum_0^{N-1}{A(RRMSPE_n,RRMSPE_N)}}{N} $$
 
 where
 
-$$A = \left\{\begin{array}{cc} 1 & RRMPSE_n> RRMPSE_N \\ 0 & RRMPSE_n< RRMPSE_N \\ \end{array}\right.$$
+$$A = \left\{\begin{array}{cc} 1 & RRMSPE_n> RRMSPE_N \\ 0 & RRMSPE_n< RRMSPE_N \\ \end{array}\right\}$$
 
 
 The p-value attempts to quantify the likelihood that the observed economic growth would have happened without the treatment at $t=T_0$.
@@ -171,6 +171,8 @@ Computing this from the RRMSPE values in the above table returns a p-value of $0
 # Extensions of SCM
 Since the original development of SCM, there have been additions to the method in order to capture more features of the region, or company, modelled as well as relaxations of assumptions in order to extend the method beyond its original scope. 
 
+Following [Ferman & Pinto, 2021](https://doi.org/10.3982/QE1596) it's not uncommon for modelling to use *demeaned* outcomes which reduce the difference in scale to allow for matching trends.
+In this setup, the mean value of each column (company) (in $\bf y$, and in $\bf X$) is subtracted from the columns values before the regression is done. Relaxing the requirement that the weights sum to one (form a weighted average) allows us model a unit which is larger or smaller than the donor set.
 
 
 ## Including more than one outcome
