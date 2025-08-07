@@ -21,24 +21,36 @@ which describes the effected unit in terms of the donor units and some error $\v
 Assembling the donor units into a matrix of shape $T_0 \times N$, which we call $\bf{X}$, allows us to simplify this sum.
 
 $$ \bf{X}= \left(\begin{array}{c} y^0 &  y^1 & . & . & y^{N-1} \end{array}\right)$$
+
 And now the model reads
+
 $$ y^N=\bf{X}\bf{w} + \varepsilon$$
+
 where $\bf w$ is an $N \times 1$ vector with components $w_n$, the weightings of each donor unit. 
+
 $$\mathbf{w}= \left(\begin{array}{c} w_0 \\ w_1 \\ . \\ . \\ w_{N-1} \end{array}\right)$$
+
 The weights sum to one and be non-negative in order to be a weighted average of the donor units. 
+
 $$\sum_{n=0}^{N-1}w_n=1, \quad \rm{and} \quad w_n\geq 0 \quad \forall \; n.$$
+
 **Negative weights and a sum greater than one imply extrapolation beyond the known data set.**
 For sufficiently many $N$ ($N\gg T$) this can hold with $\varepsilon=\bf 0$, but in a typical data set, the error is non-zero.
 
 The optimal weights $w^n$ are found by linear regression, minimising the total error $\varepsilon$ in the prediction, which is defined by the quadratic programming statement
+
 $$\min\mathbf{(y^N-Xw).T V(y^N-Xw)}, \qquad = \min\sum_0^{t=T_0-1}v_{t}\cdot\varepsilon_t^2$$
+
 where $V$ is a diagonal $T\times T$ matrix which weights the relative contribution of the error in each point $y^n_t$. For classical linear regression, $V=I_T$ the $T\times T$ identity matrix.
 Solving this problem gives us the closest match to the treated unit in question up until the time before the intervention $t=T_0-1$, as a weighted average of the donor units.
 
 The weights calculated can then be used to forecast the evolution of the synthetic company after the intervention,
+
 $$\mathbf{\tilde y}^N_{\tau<t<T}= \mathbf{X}_{T_0<t\leq T_1}\cdot \mathbf{w}.$$
+
 where $X_{T_0<t\leq T_1}$ is the gdp of the donor regions after the intervention in the effected region,
 and we can now write the effect of the treatment as the difference between the observed gdp and the predicted uneffected gdp.
+
 $$\mathrm{effect}=\mathbf{y}^N_{T_0<t\leq T_1}-\mathbf{\tilde y}^N_{T_0<t\leq T_1}.$$
 
 ## Challenges of synthetic control methods
@@ -63,9 +75,13 @@ A formalised approach to choosing the donor set by [Abadie et al, 2010](https://
 ### Choosing the $V$ weighting matrix
 The weighting matrix $V$ is a diagonal matrix that weights the relative contribution to the loss function of each time period in the training period.
 
-1. The identity matrix, weights the outcome at each time equally and tries to fit them all equally. $$V=I_{T_0 \times T_0}$$
+1. The identity matrix, weights the outcome at each time equally and tries to fit them all equally.
  
-2. The inverse of the variance of the outcomes of the $N$ countries at time $t$. This effectively rescales the time period to have a variance of $1$ across the countries. $$V(t,t)=\frac{(N-1)}{\sum_{n=0}^{N-1} (y^n_t-\bar y_t)^2 }$$
+   $$V=I_{T_0 \times T_0}$$
+ 
+2. The inverse of the variance of the outcomes of the $N$ countries at time $t$. This effectively rescales the time period to have a variance of $1$ across the countries.
+
+   $$V(t,t)=\frac{(N-1)}{\sum_{n=0}^{N-1} (y^n_t-\bar y_t)^2 }$$
 
 3. A data driven approach to selecting $V$ using 'out-of-sample' RMSPE. This approach requires the partitioning of the $0<t<T_0$ region into a training and validation set. A bilevel optimisation is done, heuristically: the weights are computed on the training set for multiple options $V$, then the RMPSE for the validation set is calculated. $V$ is chosen such that the set of weights give the smallest RMSPE in the validation set, rather than in the training set. This approach requires enough temporal data to have a training and a validation set, and enough knowledge of which pre-treatment outcomes should be in each.
 
@@ -101,6 +117,7 @@ We have already calculated the RMSPE errors in the fitted time period, including
 The premise of this is that we assess the likelihood that the outcome would have happened without the intervention of devolution (the null hypothesis), by way of a p-value. The null hypothesis can then be rejected or accepted at a threshold $p$ level.
 
 1. The RRMSPE of region $n$ is written as the ratio of the mean squared error of the forecasted period to that of the fitted period. The RRMSPE quantifies how much the region deviates from its counterfactual in the post-treatment period, relative to the pre-treatment period.
+   
 $$ RRMSPE_n = \frac{\sqrt{\sum_{\tau+1}^T (y^n(t)-\tilde y^n(t))^2}}{\sqrt{\sum_{0}^{\tau} (y^n(t)-\tilde y^n(t))^2}}.$$
 
 2. We calculate the fitted and prediction errors for each region, and the ratio of these RMSPE errors.
@@ -149,6 +166,7 @@ Assuming that there are $m$ outcomes each observed at $T_0$ times, there are a f
 2. Perform SCM on a concatenated vector of length $mT\times 1$ for each region, resulting in a single weighting vector that includes all of the outcomes. This is simple to implement but one disadvantage of this is that the minimisation will likely favour matching outcomes of greater magnitude. This could be accounted for via normalisation and via the $V$ matrix. Concatenation can also be used where the additional information is not time series data.
 3. SCM with an unconstrained intercept term which accounts for the systematic difference in scale between the different outcome variables. 
 4. Perform SCM on an averaged vector of length $T\times 1$ where each entry is the average of all the $m$ outcomes at the given time. Needs to have a value for each outcome at each time, concatenation is more flexible. This likely also needs some consideration of normalisation. Without normalisation, the vector of averaged outcomes is given by
+
 $$\tilde y^n_t =\frac{1}{M}\sum_{m=0}^{M-1}y^n_{t,m}$$.
 
 It is not immediately clear which of these will suit a problem at hand and some packages available tend to use a combination of approaches then further assess which gives the most robust result in that scenario.
@@ -165,9 +183,13 @@ In the development of synthetic companies, there are many companies with informa
 This is where the penalised synthetic control estimator [Abadie](https://economics.mit.edu/sites/default/files/publications/A%20Penalized%20Synthetic%20Control%20Estimator%20for%20Disagg.pdf) can be used to control the trade off between fitting well the treated unit by using many untreated units and using untreated units that have predictor values close to the treated unit. 
 
 The quadratic programme reads as follows
+
 $$\min\mathbf{(y^N-Xw).T V(y^N-Xw)}+\lambda \bf (y^N J_{1,N}-X).T (y^NJ_{1,N}-X) w \cdot J_{1,N}.T $$
+
 where $J_{1,N}$ is a vector of ones of shape $1\times N$, alternatively with summation notation:
+
 $$= \min || y^N-\sum^{N-1}_{j=0} w_jX_j||^2+\lambda\sum_{j=0}^{N-1}w_j(y^N-X_j).T (y^N-X_j). $$
+
 The parameter $\lambda$ controls the balance within the solution of interpolation and extrapolation biases.
 $\lambda\to 0$ recovers classic synthetic control, $\lambda\to \infty$ is a nearest neighbour match. For each value of $\lambda$ there ought to be a unique solution (see Abadie, convex hulls and Delaunay geometry, I believe it but I can't prove it).
 
@@ -179,5 +201,6 @@ This is effectively a generalisation of the penalised method but using two diffe
 ### Using SVD/POD/PCA for disaggregate data.
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
