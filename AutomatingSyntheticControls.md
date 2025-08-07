@@ -10,7 +10,7 @@ at times $t=0,1,2,...,T_0,T_0+1,...,T_1$. At $t=T_0$, the region experiences an 
 The scalar values $y^n_t$ (the gdp of region $n$ at time $t$) can be written as a vector $\bf{y^n}$ of shape $T \times 1$.
 In order to create the synthetic control method we truncate the vector with $T=T_0$ including all observations $t=0,1,...,T_0-1$, before the intervention occurs.
 
-$$ \mathbf{y^n}= \left(\begin{array}{c} y^n_0 \\ y^n_1 \\ .\\ . \\ y^n_T \end{array}\right)$$
+$$ \mathbf{y^n}= \left(\begin{bmatrix}{c} y^n_0 \\ y^n_1 \\ .\\ . \\ y^n_T \end{bmatrix}\right)$$
 
 The vector exists for $n=0,1,...N$ (N+1) region (units) with components $y^n_t$ for each of the companies at each time. We'll assign company $N$ as the unit to be modelled, and thus $n=0,1,2,...N-1$ are the ($N$) donor units. The synthetic control method proposes that we can create a sum
 
@@ -198,6 +198,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 ### Using SVD/POD/PCA for disaggregate data.
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
