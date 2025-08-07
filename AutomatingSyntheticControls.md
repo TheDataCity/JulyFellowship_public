@@ -143,7 +143,7 @@ $$ p_N=\frac{\sum_0^{N-1}{A(RRMPSE_n,RRMPSE_N)}}{N} $$
 
 where
 
-$$A = \left\{\begin{array}{cc} 1 & RRMPSE_n> RRMPSE_N \\ 0 & RRMPSE_n< RRMPSE_N \\ \end{array}\right.$$
+$$A = \begin{array}{cc} 1 & RRMPSE_n> RRMPSE_N \\ 0 & RRMPSE_n< RRMPSE_N \\ \end{array}.$$
 
 The p-value attempts to quantify the likelihood that the observed economic growth would have happened without the treatment at $t=T_0$.
 Computing this from the RRMPSE values in the above table returns a p-value of $0.64$ to 2sf. The meaning of $p=0.64$ is that there is a 64% chance that the observed economic growth would have occured without the intervention of devolution. 
@@ -201,6 +201,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 ### Using SVD/POD/PCA for disaggregate data.
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
