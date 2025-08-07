@@ -212,12 +212,13 @@ $\lambda\to 0$ recovers classic synthetic control, $\lambda\to \infty$ is a near
 
 ## Matching and synthetic control estimator
 [Kellog et al, 2020](https://www.nber.org/system/files/working_papers/w26624/w26624.pdf) details the matching and synthetic control (MASC) estimator.
-This is effectively a generalisation of the penalised method but using two different weighting vectors. Generates the matching estimator and synthetic control estimater and then computes a weighted average of those two. That weighting is validated using out of sample validation. It's also in principle possible to average penalised sc and matching.
+This is effectively a generalisation of the penalised method but using two different weighting vectors. Generates the matching estimator and synthetic control estimater and then computes a weighted average of those two. That weighting is validated using out of sample validation. It's also in principle possible to apply this with the penalised synthetic control estimator and the matching estimator.
 
 ### Using SVD/POD/PCA for disaggregate data.
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
