@@ -171,10 +171,8 @@ Computing this from the RRMSPE values in the above table returns a p-value of $0
 # Extensions of SCM
 Since the original development of SCM, there have been additions to the method in order to capture more features of the region, or company, modelled as well as relaxations of assumptions in order to extend the method beyond its original scope. 
 
-For example (as in Tobacco in California paper), relaxation of the requirement that the donor company be a weighted average allows the use of the method to model a company using companies which are much larger or smaller but follow a similar trend.
-
-In the same way, it's not uncommon for modelling to use *demeaned* outcomes which reduce the difference in scale to allow for matching trends using a weighted average.
-In this setup, the mean value of each column (company) (in $\bf y$, and in $\bf X$) is subtracted from the columns values before the regression is done.
+Following [Ferman & Pinto, 2021 ](https://doi.org/10.3982/QE1596) it's not uncommon for modelling to use *demeaned* outcomes which reduce the difference in scale to allow for matching trends.
+In this setup, the mean value of each column (company) (in $\bf y$, and in $\bf X$) is subtracted from the columns values before the regression is done. There are also instances of relaxing the requirement that the weights sum to one, to model a unit which is larger or smaller than the donor set.
 
 
 ## Including more than one outcome
