@@ -138,9 +138,7 @@ The fitted RMSPE help us to assess the suitability of this control set for model
 
 Following [Abadie and Gardeazabal, 2003](10.1257/000282803321455188).
 
-Now we have the apparent economic effect of devolution, and we know that our donor set is appropriately chosen. We next want to understand whether the deviation of the trajectory of real scotland froom the synthetic counterpart can be attributed to the treatment or to other circumstances which affected any number of the regions we used to build the synthetic region.
-
-We have already calculated the RMSPE errors in the fitted time period, including Scotland in the donor group. The RMSPE errors can be used to evaluate the statistical significance of Scotland's deviation from the control.
+Now we have the apparent economic effect of devolution, and we know that our donor set is appropriately chosen. We next want to understand whether the deviation of the trajectory of real scotland froom the synthetic counterpart can be attributed to the treatment or to other circumstances which affected any number of the regions we used to build the synthetic region. We repeated the calculation of each synthetic region, calculating the fitted and predicted time period RMSPEs, this time excluding Scotland from the donor group of the other regions. The RMSPE errors can be used to evaluate the statistical significance of Scotland's deviation from the control.
 
 The premise of this is that we assess the likelihood that the outcome would have happened without the intervention of devolution (the null hypothesis), by way of a p-value. The null hypothesis can then be rejected or accepted at a threshold $p$ level.
 
@@ -241,6 +239,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
