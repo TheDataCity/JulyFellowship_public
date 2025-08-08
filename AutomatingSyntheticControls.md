@@ -148,20 +148,6 @@ $$ RRMSPE_n = \frac{\sqrt{\sum_{\tau+1}^T (y^n(t)-\tilde y^n(t))^2}}{\sqrt{\sum_
 
 2. We calculate the fitted and prediction errors for each region, and the ratio of these RMSPE errors.
 
-| Region                  | Fitted RMSPE         | Predicted RMSPE         | RRMSPE            |
-|-------------------------|--------------------|--------------------|------------------------|
-| North East              | 0.00699   | 0.07914            | 11.32     |
-| Yorkshire and The Humber| 0.01172   | 0.05412            | 4.62      |
-| East Midlands           | 0.02007   | 0.13023            | 6.49      |
-| East of England         | 0.01385   | 0.17605            | 12.71                  |
-| London                  | 0.00844   | 0.41118            | 48.69                  |
-| South East              | 0.00849   | 0.36180            | 42.61                  |
-| South West              | 0.11269   | 0.24622            | 2.18                   |
-| West Midlands           | 0.06162   | 0.15027            | 2.44                   |
-| North West              | 0.00519   | 0.06722            | 12.94                  |
-| Wales                   | 0.02197   | 0.03136            | 1.43                   |
-| Scotland                | 0.01873   | 0.08092            | 4.32                   |
-| Northern Ireland        | 0.03201   | 0.09031            | 2.82                   |
 | Region                  | Min Value   | Max Value   | Mean Value   |
 |-------------------------|-------------|-------------|--------------|
 | North East              | 0.00132086  | 0.01588460  | 12.02591192  |
@@ -185,7 +171,6 @@ $$ p_N=\frac{\sum_0^{N-1}{A(RRMSPE_n,RRMSPE_N)}}{N} $$
 
 where
 ```math
-$$A = \left\{\begin{array}{cc} 1 & RRMSPE_n> RRMSPE_N \\ 0 & RRMSPE_n< RRMSPE_N \\ \end{array}\right.$$
 A = \left\{\begin{array}{cc} 1 & RRMSPE_n> RRMSPE_N \\ 0 & RRMSPE_n< RRMSPE_N \\ \end{array}\right.
 ```
 The p-value attempts to quantify the likelihood that the observed economic growth would have happened without the treatment at $t=T_0$.
@@ -239,6 +224,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
