@@ -95,7 +95,6 @@ In 1999, Scotland gained [devolved powers](https://www.deliveringforscotland.gov
 
 We are interested in whether devolution increased or reduced the economic growth of Scotland.
 
-We use ONS data for the growth of gdp of regions of the United Kingdom, found [here](https://www.escoe.ac.uk/research/historical-data/regional-data/), to assess whether devolution has resulted in improved economic performance for Scotland. The data is provided from 1979 Q2 through to 2020. 
 ![image](DevolutionofScotland.png 'Comparison of gdp in scotland and synthetic scotland')
 
 We start with the simplest SCM,
