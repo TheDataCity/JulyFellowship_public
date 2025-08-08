@@ -95,6 +95,9 @@ In 1999, Scotland gained [devolved powers](https://www.deliveringforscotland.gov
 
 We are interested in whether devolution increased or reduced the economic growth of Scotland.
 
+We use data for the growth of gva of regions of the United Kingdom, found [here](https://www.escoe.ac.uk/research/historical-data/regional-data/), to assess whether devolution has resulted in improved economic performance for Scotland. The data used in this analysis is provided from 1970 Q2 through to 2018 Q4 [here](https://www.escoe.ac.uk/regionalnowcasting/).
+
+
 ![image](DevolutionofScotland.png 'Comparison of gdp in scotland and synthetic scotland')
 
 We start with the simplest SCM,
@@ -104,6 +107,7 @@ We start with the simplest SCM,
 - the matrix $V=I_{T\times T}$, the identity matrix (we treat all years equally when minimising $\varepsilon$).
 
 The result is plotted in the figure below, and this synthetic scotland is composed of the North West (59%), South West (15%) and  Northern Ireland (26%). At the first glance, we see that Scotland looks like it has outperformed its synthetic counterpart but can we be sure that this is significant? Now we must attempt to quantify the significance.
+The result is plotted in the figure below, and this synthetic scotland is composed of the North West (57%), South West (19%) and  Northern Ireland (23%). At the first glance, we see that Scotland looks like it has outperformed its synthetic counterpart but can we be sure that this is significant? Now we must attempt to quantify the significance.
 
 ## Robustness checking & statistical significance
 We began in this section by creating a synthetic counterpart for each region of the UK as a weighted average of all the other ones, as we did with Scotland. Next, we calculate the Root Mean Square Errors in each case for the fitted period (pre-1999).
@@ -122,10 +126,28 @@ We began in this section by creating a synthetic counterpart for each region of 
 | Wales                   | 0.02197            |
 | Scotland                | 0.01873            |
 | Northern Ireland        | 0.03201            |
+We began in this section by creating a synthetic counterpart for each region of the UK as a weighted average of all the other ones, as we did with Scotland. These are plotted in ![image](ComparisonOfRegions.png). Next, we calculate the Root Mean Square Errors in each case for the fitted period (pre-1999).
+
+| Region                  | RMSPE      |
+|-------------------------|------------|
+| North East              | 0.00132086 |
+| Yorkshire and The Humber| 0.00220601 |
+| East Midlands           | 0.00379119 |
+| East of England         | 0.00261533 |
+| London                  | 0.00159100 |
+| South East              | 0.00160350 |
+| South West              | 0.02128394 |
+| West Midlands           | 0.01163893 |
+| North West              | 0.00098075 |
+| Wales                   | 0.00414266 |
+| Scotland                | 0.00353828 |
+| Northern Ireland        | 0.00604497 |
+
 
 This shows that using our selected collection of donors (the other regions of the UK) we can create synthetic controls of all other regions. Of these the synthetic control for North West England most closely matches its measured performance and the synthetic control for South West England least well matches its measured performance. If we had a usefully larger donor set, we would expect these RMSPE measures to be smaller for all regions.
 
 The fitted RMSPE help us to assess the suitability of this control set for modelling Scotland. If we are able to build each region out of the other regions with an appropriately small RMSPE, this suggests that the control set are similar enough to model each others behaviour with no interventions. RMSPE(scotland) $=0.019$ and all of the RMSPE reported are $<0.189$ (using a threshold of 10 RMSP(scotland)) suggests that they are sufficiently similar to make a good control group. The threshold of 10 RMSPE(scotland) is chosen arbitrarily and this is somewhat of a challenge for automation - where should the threshold be? A threshold of 5 would remove the South West from the analysis for example.
+The fitted RMSPE help us to assess the suitability of this control set for modelling Scotland. If we are able to build each region out of the other regions with an appropriately small RMSPE, this suggests that the control set are similar enough to model each others behaviour with no interventions. RMSPE(scotland) $=0.0035$ and all of the RMSPE reported are $<0.035$ (using a threshold of 10 RMSP(scotland)) suggests that they are sufficiently similar to make a good control group. The threshold of 10 RMSPE(scotland) is chosen arbitrarily and this is somewhat of a challenge for automation - where should the threshold be? A threshold of 5 would remove the South West from the analysis for example.
 
 ### Quantifying the statistical significance of devolution
 
@@ -157,6 +179,22 @@ $$ RRMSPE_n = \frac{\sqrt{\sum_{\tau+1}^T (y^n(t)-\tilde y^n(t))^2}}{\sqrt{\sum_
 | Wales                   | 0.02197   | 0.03136            | 1.43                   |
 | Scotland                | 0.01873   | 0.08092            | 4.32                   |
 | Northern Ireland        | 0.03201   | 0.09031            | 2.82                   |
+| Region                  | Min Value   | Max Value   | Mean Value   |
+|-------------------------|-------------|-------------|--------------|
+| North East              | 0.00132086  | 0.01588460  | 12.02591192  |
+| Yorkshire and The Humber| 0.00220601  | 0.01096904  | 4.97233220   |
+| East Midlands           | 0.00379119  | 0.02420864  | 6.38550455   |
+| East of England         | 0.00261533  | 0.03253332  | 12.43949301  |
+| London                  | 0.00159100  | 0.08979494  | 56.43940211  |
+| South East              | 0.00160350  | 0.07845852  | 48.92952987  |
+| South West              | 0.02128394  | 0.03225501  | 1.51546253   |
+| West Midlands           | 0.01163893  | 0.02072472  | 1.78063701   |
+| North West              | 0.00099025  | 0.01352162  | 13.65473844  |
+| Wales                   | 0.00414266  | 0.00458707  | 1.10727472   |
+| Scotland                | 0.0353828   | 0.01368051  | 3.86643114   |
+| Northern Ireland        | 0.00604497  | 0.01333767  | 2.20640864   |
+
+
 
 3. For the treated region of Scotland, we can now generate a p-value based upon the relative size of the $RRMSPE$ for each region.
 
@@ -165,6 +203,7 @@ $$ p_N=\frac{\sum_0^{N-1}{A(RRMSPE_n,RRMSPE_N)}}{N} $$
 where
 ```math
 $$A = \left\{\begin{array}{cc} 1 & RRMSPE_n> RRMSPE_N \\ 0 & RRMSPE_n< RRMSPE_N \\ \end{array}\right.$$
+A = \left\{\begin{array}{cc} 1 & RRMSPE_n> RRMSPE_N \\ 0 & RRMSPE_n< RRMSPE_N \\ \end{array}\right.
 ```
 The p-value attempts to quantify the likelihood that the observed economic growth would have happened without the treatment at $t=T_0$.
 Computing this from the RRMSPE values in the above table returns a p-value of $0.64$ to 2sf. The meaning of $p=0.64$ is that there is a 64% chance that the observed economic growth would have occured without the intervention of devolution. 
