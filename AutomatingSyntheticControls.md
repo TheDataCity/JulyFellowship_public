@@ -111,22 +111,6 @@ The result is plotted in the figure below, and this synthetic scotland is compos
 
 ## Robustness checking & statistical significance
 We began in this section by creating a synthetic counterpart for each region of the UK as a weighted average of all the other ones, as we did with Scotland. Next, we calculate the Root Mean Square Errors in each case for the fitted period (pre-1999).
-
-| Region                  | Fitted RMSPE        |
-|-------------------------|--------------------|
-| North East              | 0.00699            | 
-| Yorkshire and The Humber| 0.01172            | 
-| East Midlands           | 0.02007            |
-| East of England         | 0.01385            | 
-| London                  | 0.00844            |
-| South East              | 0.00849            |
-| South West              | 0.11269            | 
-| West Midlands           | 0.06162            |
-| North West              | 0.00519            |
-| Wales                   | 0.02197            |
-| Scotland                | 0.01873            |
-| Northern Ireland        | 0.03201            |
-
 We began in this section by creating a synthetic counterpart for each region of the UK as a weighted average of all the other ones, as we did with Scotland. These are plotted in ![image](ComparisonOfRegions.png). Next, we calculate the Root Mean Square Errors in each case for the fitted period (pre-1999).
 
 | Region                  | RMSPE      |
@@ -257,6 +241,7 @@ This is effectively a generalisation of the penalised method but using two diffe
 TBC for a large volume of individual level data, SVD seems to be standard for reducing/filtering noise. This seems to be used for 'Robust Synthetic Control' but I haven't explored beyond this.
 
 It's the same theory as POD in FD, if we filter the values first and set a threshold in the unitary matrix then we remove noisy/idiosyncratic values from the outcomes and that means we're not fitting idiosyncracies.
+
 
 
 
