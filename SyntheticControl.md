@@ -2,8 +2,6 @@
 
 Progress in our July fellowship project.
 
-\- put line on last fitted date.
-
 ## 1\. Synthetic Brexit
 
 We started our project by reproducing the [synthetic control methods for estimating the economic impact of Brexit](https://consoc.org.uk/publications/the-economic-impact-of-brexit/) on the UK economy. This method assembles a synthetic control (doppelganger) of the UK from a weighted sum of other countries. The synthetic control performed near-identically to the UK before 2016 and we might expect Britain to have performed like the synthetic control had it not left the EU. By comparing the performance of the synthetic control with the real performance of Britain since 2016 we can estimate the cost of Brexit to the UK economy.
